@@ -782,6 +782,12 @@ recv_upcalls(struct handler *handler)
             break;
         }
 
+        /* CAB branch */
+        if (dupcall->flag) {
+        		/* CAB process */
+
+        }
+
         if (odp_flow_key_to_flow(dupcall->key, dupcall->key_len, flow)
             == ODP_FIT_ERROR) {
             goto free_dupcall;
