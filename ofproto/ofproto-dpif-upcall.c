@@ -236,6 +236,15 @@ struct upcall {
     const struct nlattr *out_tun_key;  /* Datapath output tunnel key. */
 
     uint64_t odp_actions_stub[1024 / 8]; /* Stub for odp_actions. */
+
+
+    /* add CAB attributes to temp upcall */
+    /* flag indicates CAB or not. */
+    int flag;
+    /* rule priority */
+    int priority;
+    /* CAB id */
+    int cab_id;
 };
 
 /* Ukeys must transition through these states using transition_ukey(). */
@@ -1481,6 +1490,11 @@ handle_upcalls(struct udpif *udpif, struct upcall *upcalls,
             op->dop.u.execute.needs_help = (upcall->xout.slow & SLOW_ACTION) != 0;
             op->dop.u.execute.probe = false;
             op->dop.u.execute.mtu = upcall->mru;
+
+            /* Assign CAB values to ops */
+            op->dop.u.execute.flag = upcall->flag;
+            op->dop.u.execute.priority = upcall->priority;
+            op->dop.u.execute.cab_id = upcall->cab_id;
         }
     }
 
