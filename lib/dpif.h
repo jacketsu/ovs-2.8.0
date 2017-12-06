@@ -802,12 +802,12 @@ struct dpif_upcall {
     struct nlattr *out_tun_key;    /* Output tunnel key. */
     struct nlattr *actions;    /* Argument to OVS_ACTION_ATTR_USERSPACE. */
 
-//    /* flag indicates CAB or not. */
-//    int flag;
-//    /* rule priority */
-//    int priority;
-//    /* CAB id */
-//    int cab_id;
+    /* flag indicates CAB or not. */
+    int flag;
+    /* rule priority */
+    int priority;
+    /* CAB id */
+    int cab_id;
 };
 
 /* A callback to notify higher layer of dpif about to be purged, so that
