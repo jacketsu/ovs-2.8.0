@@ -710,6 +710,18 @@ struct dpif_execute {
 
     /* Input, but possibly modified as a side effect of execution. */
     struct dp_packet *packet;          /* Packet to execute. */
+
+    /*
+     * Add the CAB extra attributes.
+     */
+
+    /* flag indicates CAB or not. */
+    int flag;
+    /* rule priority */
+    int priority;
+    /* CAB id */
+    int cab_id;
+
 };
 
 /* Queries the dpif for a flow entry.
