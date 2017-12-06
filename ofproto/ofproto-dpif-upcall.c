@@ -786,6 +786,10 @@ recv_upcalls(struct handler *handler)
         if (dupcall->flag) {
         		/* CAB process */
 
+        	 	/* add CAB attributes to upcall */
+        		upcall->flag = dupcall->flag;
+        		upcall->priority = dupcall->priority;
+        		upcall->cab_id = dupcall->cab_id;
         }
 
         if (odp_flow_key_to_flow(dupcall->key, dupcall->key_len, flow)
